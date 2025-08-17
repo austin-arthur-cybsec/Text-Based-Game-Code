@@ -1,0 +1,240 @@
+# game setup 
+
+rooms = {'Entrance': {'name': 'Entrance', 
+
+        'text': 'You are at the Entrance.'}, 
+
+         
+
+    'Foyer': {'name': 'Foyer', 'east': 'Entrance', 'South': 'Throne Room', 
+
+        'text': 'You are in the Foyer.'},   
+
+    'Throne Room': {'name': 'Throne Room', 'west': 'Warlock Lair', 'north': 'Foyer', 'south': 'Hallway', 
+
+        'text': 'You are in the Throne Room.'}, 
+
+'Warlock Lair': {'name': 'Warlock Lair', 'east': 'Throne Room', 
+
+        'text': 'You are in the Lair!'},   
+
+    'Hallway': {'name': 'Hallway', 'west': 'Library', 'east': 'Deity Altar Room', 
+
+        'text': 'You are in the Hallway.'}, 
+
+'Library': {'name': 'Library', 'east': 'Hallway',  
+
+        'text': 'You are in the Library.'}, 
+
+'Deity Altar Room': {'name': 'Deity Altar Room', 'west': 'Hallway', 'north': 'Kitchen', 
+
+        'text': 'You are in the Deity Altar Room.'}, 
+
+'Kitchen': {'name': 'Kitchen', 'South': 'Deity Altar Room', 
+
+        'text': 'You are in the Kitchen.'} 
+
+ 
+
+    } 
+
+directions = ['north', 'south', 'east', 'west'] 
+
+current_room = rooms['Entrance'] 
+
+  
+
+# game text loop 
+
+while True: 
+
+    # display current location 
+
+  
+
+    print('You are in {}.'.format(current_room['name'])) 
+
+    
+
+    # user input 
+
+    command = input('\nWhat do you do?') 
+
+    # moves 
+
+    if command in directions: 
+
+        if command in current_room: 
+
+            current_room = rooms[current_room[command]] 
+
+        elif rooms[3] == 'Warlocks Lair': 
+
+            print('Congratulations! You have reached the lair and defeated the Warlock!') 
+
+            break 
+
+        else: 
+
+            # invalid movement 
+
+            print('You cannot go that way.') 
+
+    # quit game 
+
+    elif command == 'quit': 
+
+        print('Thanks for playing!') 
+
+        break 
+
+    # invalid command 
+
+    else: 
+
+        print('Invalid input') 
+
+ 
+
+------------------------------------------------------------------------------------------------------------------ 
+
+ 
+
+# game setup 
+
+rooms = {'Entrance': {'name': 'Entrance', 
+
+        'text': 'You are at the Entrance.'}, 
+
+         
+
+    'Foyer': {'name': 'Foyer', 'east': 'Entrance', 'South': 'Throne Room', 
+
+        'text': 'You are in the Foyer.'},   
+
+    'Throne Room': {'name': 'Throne Room', 'west': 'Warlocks Lair', 
+
+        'text': 'You are in the Throne Room.'} 
+
+    } 
+
+directions = ['north', 'south', 'east', 'west'] 
+
+current_room = rooms['Entrance'] 
+
+  
+
+# game text loop 
+
+while True: 
+
+    # display current location 
+
+  
+
+    print('You are in {}.'.format(current_room['name'])) 
+
+    
+
+    # user input 
+
+    command = input('\nWhat do you do?') 
+
+    # moves 
+
+    if command in directions: 
+
+        if command in current_room: 
+
+            current_room = rooms[current_room[command]] 
+
+        elif rooms[3] == 'Warlocks Lair': 
+
+            print('Congratulations! You have reached the lair and defeated the Warlock!') 
+
+            break 
+
+        else: 
+
+            # invalid movement 
+
+            print('You cannot go that way.') 
+
+    # quit game 
+
+    elif command == 'quit': 
+
+        print('Thanks for playing!') 
+
+        break 
+
+    # invalid command 
+
+    else: 
+
+        print('Invalid input') 
+
+ 
+
+---------------------------------------------------------------------------------------------------------------------------- 
+
+def user_instructions(): 
+    print('--------------') 
+    print('The town of Norwich has hired your adventuring party to defeat the evil Warlock!') 
+    print('Your quest is to collect all 6 items and bring them to the Warlock’s Lair to defeat the Warlock!') 
+    print('\nMove through the rooms using the commands: "west", "south", "north", or "east"') 
+    print('Each room contains an item to pick up, use command: "(item name)"') 
+    print('\nGood Luck!') 
+ 
+ 
+#define command available for each room 
+rooms = { 
+    'Entrance': {'west': 'Foyer', 'item': 'Shield of Magic Defense'}, 
+    'Foyer': {'east': 'Entrance', 'south': 'Throne Room', 'item': 'Helm of Norwich'}, 
+    'Throne Room': {'west': 'Warlock Lair', 'south': 'Hallway', 'item': 'Mace of Light'}, 
+    'Hallway': {'west': 'Library', 'east': 'Deity Altar', 'item': 'Boots of Guliveres'}, 
+    'Library': {'east': 'Hallway', 'item': 'Amulet of Healing'}, 
+    'Deity Altar': {'north': 'Kitchen', 'west': 'Hallway', 'item': 'Cloak of Arramir'}, 
+    'Kitchen': {'south': 'Deity Altar', 'item': 'Ale of Magic Resist'}, 
+    'Warlock Lair': {'east': 'Throne Room', 'item': 'Dragonblood Scroll'} 
+} 
+ 
+def user_status(): #indicate room and inventory contents 
+    print('\n-------------------------') 
+    print('You are in the {}'.format(current_room)) 
+    print('In this room you see {}'.format(rooms[current_room]['item'])) 
+    print('Inventory:', inventory_items) 
+    print('-------------------------------') 
+ 
+def invalid_move(): 
+    print('Command not accepted, please try again') 
+ 
+def invalid_item(): 
+    print('Item is not found in this room') 
+    user_status() 
+ 
+ 
+ 
+user_instructions() 
+ 
+inventory_items = [] #list begins empty 
+current_room = 'Lobby' #start in lobby 
+command = '' 
+ 
+ 
+while current_room != 'Warlock Lair': #Warlock Lair is the final room of the game, no commands can be entered 
+    user_status() 
+    command = input('Enter next move.\n').lower() 
+    if command in rooms[current_room]: 
+        if command in rooms[current_room]['item']: 
+            inventory_items.append(command) 
+        else: 
+            current_room = rooms[current_room][command] 
+    else: 
+        print('Invalid command') 
+ 
+if len(inventory_items) != 6: 
+    print('You Lose') 
+     
+else: 
+    print('You have defeated the Warlock and retrieved the Dragonblood Scroll!') 
